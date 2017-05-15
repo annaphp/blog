@@ -1,0 +1,16 @@
+<html layout:decorator="layout/base">
+	<section layout:fragment="content">		
+	
+		<a th:href="@{/logout}">sign out</a>
+
+		
+		<h1>Create new article:</h1>
+		
+			<form  action="#" th:action="@{/save}" th:object="${article}" method="post">
+				<input type="text" th:field="*{title}"  	 	placeholder="title" />
+				<input type="text" th:field="*{content}"  	 	placeholder="content" />
+				<input type="submit" value="Submit" />
+			</form>
+				
+	</section>
+</html>
