@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<div th:include="layout/style"> style </div>	
 		<title>Layout page</title>
@@ -7,9 +7,16 @@
 <body>
 	<span th:utext="${session.userEmail}"></span>
 	<span th:utext="${session.adminEmail}"></span>
-	<h1>Above content</h1>
+	
+	<nav class="navbar navbar-default">
+		    <ul class="nav navbar-nav">
+		    	<li><a th:href="@{/article_form}">Add Post</a> </li>
+		    	<li><a th:href="@{/logout}">Sign out</a></li>
+		    </ul>
+	
+	</nav>
 	<hr/>
-	<div layout:fragment="content"></div>
+	<div class="container" layout:fragment="content"></div>
 	<hr/>
 	<h1>Below content</h1>
 	

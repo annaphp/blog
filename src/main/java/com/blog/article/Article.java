@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.Length;
+
 @Entity
 public class Article {
 	
@@ -11,6 +13,7 @@ public class Article {
 	@GeneratedValue
 	private Long id;
 	private String title;
+	@Length(max=4000)
 	private String content;
 	
 

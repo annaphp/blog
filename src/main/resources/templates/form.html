@@ -1,15 +1,13 @@
 <html layout:decorator="layout/base">
 	<section layout:fragment="content">		
-	
-		<a th:href="@{/logout}">sign out</a>
-
+		<h4>Add new post:</h4>
 		
-		<h1>Create new article:</h1>
-		
-			<form  action="#" th:action="@{/save}" th:object="${article}" method="post">
-				<input type="text" th:field="*{title}"  	 	placeholder="title" />
-				<input type="text" th:field="*{content}"  	 	placeholder="content" />
-				<input type="submit" value="Submit" />
+			<form  class="form-horizontal" action="#" th:action="@{/save}" th:object="${article}" method="post">
+			   <input  class="form-control" type="text" th:field="*{title}" placeholder="title" />
+			   <textarea class="form-control" rows="5" type="text" th:field="*{content}" placeholder="content"></textarea>
+                <input type="file"></input>
+                <p class="help-block">Add image to your post</p>
+				<input class="btn btn-primary" type="submit" value="Add" />
 			</form>
 				
 	</section>

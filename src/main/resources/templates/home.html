@@ -1,24 +1,13 @@
 <html layout:decorator="layout/base">
 	<section layout:fragment="content">		
-	
-		<a th:href="@{/logout}">sign out</a>
-		
-		<h1>Hi</h1>		
-		
-		<a th:href="@{/article_form}">create article</a>    	
-		
-			<table  th:if="${! #sets.isEmpty(articles)}">
-				<tr><th>Article</th></tr>
-				<tr th:each="a : ${articles}">
-					<td th:text="${a.title}"> title </td>
-			        <td th:text="${a.content}"> content</td>
-					
-					<!-- <td><a class="btn red" th:href="@{/admin/delete_user/{id}(id=${u.id})}">delete</a></td>
-					<td><a class="btn red" th:href="@{/admin/reset_pass_user/{id}(id=${u.id})}">reset password</a></td> -->
-				</tr>
-			</table> 
-		
-		
-				
+		<div  th:if="${! #sets.isEmpty(articles)}">
+			<div th:each="a : ${articles}">
+				<h2 th:text="${a.title}"> title </h2>
+			    <div th:text="${a.content}"> content</div>
+			</div>
+		</div> 			
 	</section>
 </html>
+
+<!-- <td><a class="btn red" th:href="@{/admin/delete_user/{id}(id=${u.id})}">delete</a></td>
+<td><a class="btn red" th:href="@{/admin/reset_pass_user/{id}(id=${u.id})}">reset password</a></td> -->
