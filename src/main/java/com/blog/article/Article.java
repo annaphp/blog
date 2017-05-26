@@ -3,8 +3,11 @@ package com.blog.article;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.Length;
+
+import com.blog.user.User;
 
 @Entity
 public class Article {
@@ -13,6 +16,17 @@ public class Article {
 	@GeneratedValue
 	private Long id;
 	private String title;
+	
+	@ManyToOne
+	private User user;
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	@Length(max=4000)
 	private String content;
 	
@@ -42,4 +56,11 @@ public class Article {
 		this.content = content;
 	}
 
+	@Override
+	public String toString() {
+		return "Article [id=" + id + ", title=" + title + ", user=" + user + ", content=" + content + "]";
+	}
+
+	
+	
 }

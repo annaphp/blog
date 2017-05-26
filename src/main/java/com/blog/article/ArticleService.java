@@ -19,5 +19,11 @@ public class ArticleService {
 	public List<Article> findAll(){
 		return repository.findAll();
 	}
+	
+	public Article findById(Long id){
+		return repository.findOne(id);
+	}
+	
+	
 
 }

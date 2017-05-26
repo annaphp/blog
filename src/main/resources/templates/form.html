@@ -2,13 +2,19 @@
 	<section layout:fragment="content">		
 		<h4>Add new post:</h4>
 		
+		<!--  th:action="@{/save}"-->
+		
 			<form  class="form-horizontal" action="#" th:action="@{/save}" th:object="${article}" method="post">
+			   <!--  if id is not loaded into the form controller doesn't get id, which makes it impossible to reuse this 
+			    form for edit function -->
+			   <input  class="form-control" type="hidden" th:field="*{id}" /> 
 			   <input  class="form-control" type="text" th:field="*{title}" placeholder="title" />
 			   <textarea class="form-control" rows="5" type="text" th:field="*{content}" placeholder="content"></textarea>
                 <input type="file"></input>
                 <p class="help-block">Add image to your post</p>
 				<input class="btn btn-primary" type="submit" value="Add" />
 			</form>
+			
 				
 	</section>
 </html>

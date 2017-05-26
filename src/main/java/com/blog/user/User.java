@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,15 +19,26 @@ public class User implements UserDetails {
 	@GeneratedValue
 	private Long id;
 	
+	@NotNull
+	//@Size(min=5, max=16, message="{username.size}") need cofig to enable custom messages
+	@Size(min=4, max=16, message="Username must be between 4 and 16 characters long")
 	private String username;
+	
+	@NotNull
 	private String password;
+	
+	
+	private String email;
 	
 	private Role role;
 	
-	
-	
-	
 
+	public User(String username, String password, String email) {
+		this.username = username;
+		this.password = password;
+		this.email = email;
+	}
+	
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
@@ -33,7 +46,16 @@ public class User implements UserDetails {
 	
 	
 
-	public User() {
+	public User() {}
+
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 

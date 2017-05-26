@@ -4,9 +4,11 @@
 			<div th:each="a : ${articles}">
 				<h2 th:text="${a.title}"> title </h2>
 			    <div th:text="${a.content}"> content</div>
+			    <a th:href="@{/edit/{id}(id=${a.id})}">Edit</a>
 			</div>
 		</div> 			
 	</section>
+	
 </html>
 
 <!-- <td><a class="btn red" th:href="@{/admin/delete_user/{id}(id=${u.id})}">delete</a></td>

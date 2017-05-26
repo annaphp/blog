@@ -41,10 +41,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	        http
 		        .authorizeRequests()
 		          //  .antMatchers("/admin/**").hasRole("ADMIN") // order is important
-		            .antMatchers("/**").hasAnyRole("OWNER", "VISITOR")
+		            .antMatchers("/","/register").permitAll()
+		            .antMatchers("/**").hasAnyRole("OWNER")
 		            .and()
 	            .formLogin()
-	              //  .loginPage("/login")
+	                .loginPage("/login")
 	                .permitAll()
 	                .successHandler((request, response, authentication) -> response.sendRedirect("/home"))
 	                .failureHandler((request, response, authentication) -> response.sendRedirect("/login"))

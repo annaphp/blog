@@ -1,0 +1,27 @@
+<html layout:decorator="layout/base">
+	<section layout:fragment="content">		
+		<form  class="form-horizontal" th:action="@{/register}" th:object="${user}" method="post">
+			
+			<div th:if="${#fields.hasErrors('*')}">
+			    <ul  th:each="error : ${#fields.errors('*')}">
+			      <li th:text="${error}"></li>
+			    </ul>
+			</div>
+			<fieldset>
+			<label for="username"  class="control-label" >Username</label>
+			<input type="text" name="username" class="form-control" th:field="*{username}" ></input>
+			
+			<label for="email"  class="control-label">Email</label>
+			<input type="email" name="email" class="form-control" th:field="*{email}"></input>
+			
+			<label for="password"  class="control-label" th:field="*{password}">Password</label>
+			<input type="password" name="password" class="form-control"></input>
+		    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			
+			<input class="btn btn-primary" type="submit" value="Register"/>
+			</fieldset>
+		</form>
+		
+			
+	</section>
+</html>
