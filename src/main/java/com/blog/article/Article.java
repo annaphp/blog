@@ -27,7 +27,7 @@ public class Article {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	@Length(max=4000)
+	@Length(max=10000)
 	private String content;
 	
 

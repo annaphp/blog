@@ -20,14 +20,14 @@ public class User implements UserDetails {
 	private Long id;
 	
 	@NotNull
-	//@Size(min=5, max=16, message="{username.size}") need cofig to enable custom messages
+	//@Size(min=5, max=16, message="{username.size}") need config to enable custom messages
 	@Size(min=4, max=16, message="Username must be between 4 and 16 characters long")
 	private String username;
 	
 	@NotNull
 	private String password;
 	
-	
+	//@NotNull
 	private String email;
 	
 	private Role role;
