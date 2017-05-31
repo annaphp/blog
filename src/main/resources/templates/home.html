@@ -4,7 +4,9 @@
 			<div th:each="a : ${articles}">
 				<h2 th:text="${a.title}"> title </h2>
 			    <div th:text="${a.content}"> content</div>
-			    <img th:src="@{/image/{id}(id=${a.id})}"/> <!-- here is article id for now but needs to be changed to img id -->
+			    <div class="text-centre">
+			    <img th:src="@{/image/{id}(id=${a.id})}" class="img-fluid" alt="Responsive image"/> <!-- here is article id for now but needs to be changed to img id -->
+			    </div>
 			    <a th:href="@{/edit/{id}(id=${a.id})}">Edit</a>
 			</div>
 		</div> 			

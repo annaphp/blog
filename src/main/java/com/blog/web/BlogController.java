@@ -39,7 +39,8 @@ public class BlogController {
 	@RequestMapping(value="/home", method=RequestMethod.GET)
 	public String home(Model model, Principal principal){
 		User currentUser = userService.byUserName(principal.getName());
-		model.addAttribute("articles", articleService.findAll());
+		System.out.println("***********" + currentUser.getId());
+		model.addAttribute("articles", articleService.findByUserId(currentUser.getId()));
 		return "home";
 	}
 	
