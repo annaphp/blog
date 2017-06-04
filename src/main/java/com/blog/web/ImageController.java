@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.blog.image.Image;
 import com.blog.image.ImageService;
@@ -28,10 +30,7 @@ public class ImageController {
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> getImage(@PathVariable Long id){
 		Image image = service.findByArticleId(id);
-		
-		
 		Resource file = service.get(image);
-		System.out.println("------------->" + image);
 		try{
 			return ResponseEntity.ok()
 					.contentType(MediaType.valueOf(image.getContentType()))
@@ -51,5 +50,7 @@ public class ImageController {
 //		service.create(file, p_id);
 //		return "redirect:/route";
 //    }
+	
+
 
 }

@@ -2,6 +2,7 @@ package com.blog.web;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -35,11 +36,18 @@ public class BlogController {
 	
 	@Autowired
 	ImageService imageService;
+	
+	
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public String allArticles(Model model){
+		List<Article> articles = articleService.findAll();
+		model.addAttribute("articles", articles);
+		return "main";
+	}
 
 	@RequestMapping(value="/home", method=RequestMethod.GET)
 	public String home(Model model, Principal principal){
 		User currentUser = userService.byUserName(principal.getName());
-		System.out.println("***********" + currentUser.getId());
 		model.addAttribute("articles", articleService.findByUserId(currentUser.getId()));
 		return "home";
 	}
@@ -55,9 +63,13 @@ public class BlogController {
 			           Principal principal)throws IOException{
 		article.setUser(userService.byUserName(principal.getName()));
 		Article a = articleService.create(article);
-		System.out.println("_________>>>article id" + a.getId());
-		imageService.create(file, a.getId());
-		System.out.println("++++++++++" + imageService.create(file, a.getId()));
+		Image image = imageService.findByArticleId(a.getId());
+		if(image != null){
+			imageService.delete(image);
+			imageService.create(file, a.getId());
+		}else{
+			imageService.create(file, a.getId());
+		}
 		return "redirect:/home";
 	}
 	
@@ -94,7 +106,21 @@ public class BlogController {
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
 	public String editForm(@PathVariable("id") Long id, Model model){
 		Article article = articleService.findById(id);
+		Image image = imageService.findByArticleId(id);
+		model.addAttribute("image", image);
 		model.addAttribute("article", article);
 		return "form";
-	}	
+	}
+	
+	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
+	public String deletePost(@PathVariable("id") Long id){
+	    Image image = imageService.findByArticleId(id);
+	   try{
+	    	imageService.delete(image);
+	   }catch(IOException exception){}
+	   
+		articleService.delete(id);
+		return "redirect:/home";
+	}
+	
 }

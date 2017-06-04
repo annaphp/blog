@@ -28,6 +28,9 @@ public class ArticleService {
 		return repository.findAllByUserId(id);
 	}
 	
+	public void delete(Long id){
+		repository.delete(id);
+	}
 	
 
 }

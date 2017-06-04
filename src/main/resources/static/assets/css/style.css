@@ -1,0 +1,18 @@
+body{
+	background-color:#f0f0f5;
+}
+
+
+.jumbotron{
+	background-image: url("/assets/images/banner_pic.jpg");
+ 	background-size: cover;
+ 	background-position: center;	
+}
+
+#jumbo {
+   color:white;
+  /*  font-family: 'Nunito', sans-serif;
+   font-family: 'Pacifico', cursive;
+   font-family: 'VT323', monospace; */
+   font-family: 'Cabin', sans-serif;
+}

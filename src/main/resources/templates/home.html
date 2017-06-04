@@ -1,16 +1,25 @@
 <html layout:decorator="layout/base">
 	<section layout:fragment="content">		
-		<div  th:if="${! #sets.isEmpty(articles)}">
-			<div th:each="a : ${articles}">
+		<div class="panel panel-default" th:if="${! #sets.isEmpty(articles)}">
+			<div th:each="a : ${articles}" class="panel-body">
+			    
 				<h2 th:text="${a.title}"> title </h2>
 			    <div th:text="${a.content}"> content</div>
-			    <div class="text-centre">
-			    <img th:src="@{/image/{id}(id=${a.id})}" class="img-fluid" alt="Responsive image"/> <!-- here is article id for now but needs to be changed to img id -->
+			    <div style="width:80%">  
+			    <img th:src="@{/image/{id}(id=${a.id})}" class="img-responsive" /> <!-- here is article id for now but needs to be changed to img id -->
+			     <div class="panel-footer">
+				     <a th:href="@{/edit/{id}(id=${a.id})}" class="glyphicon glyphicon-pencil" aria-hidden="true" ></a>			   
+				     <a th:href="@{/delete/{id}(id=${a.id})}"  class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+			     </div>
 			    </div>
-			    <a th:href="@{/edit/{id}(id=${a.id})}">Edit</a>
+			    
 			</div>
 		</div> 			
 	</section>
+	
+	
+	
+	
 	
 </html>
 

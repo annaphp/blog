@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<head>
-		<div th:include="layout/style"> style </div>	
+		<div th:include="layout/style"> style </div>
 		<title>Layout page</title>
 	</head>
 <body>
@@ -9,13 +11,16 @@
 	<span th:utext="${session.adminEmail}"></span>
 	
 	<nav class="navbar navbar-default">
-		    <ul class="nav navbar-nav">
-		    	<li><a th:href="@{/article_form}">Add Post</a> </li>
-		    	<li><a th:href="@{/login}">Sign in</a></li>
-		    	<li><a th:href="@{/logout}">Sign out</a></li>
-		    	<li><a th:href="@{/register}">Register</a></li>
+		    <ul class="nav nav-pills">
+		           
+			    	<li sec:authorize="isAuthenticated()" role="presentation"><a th:href="@{/article_form}">Add Post</a> </li>
+			    	<li sec:authorize="isAuthenticated()" role="presentation"><a th:href="@{/logout}">Sign out</a></li>
+				
+		    	<li sec:authorize="!isAuthenticated()" role="presentation" class="active"><a th:href="@{/login}">Sign in</a></li>
+		    	<li sec:authorize="!isAuthenticated()" role="presentation"><a th:href="@{/register}">Create Blog</a></li>
 		    </ul>
 	</nav>
+	
 	<hr/>
 	<div class="container" layout:fragment="content"></div>
 	<hr/>
