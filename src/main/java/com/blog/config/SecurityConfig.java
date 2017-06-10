@@ -43,13 +43,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	        http
 		        .authorizeRequests()
 		          //  .antMatchers("/admin/**").hasRole("ADMIN") // order is important
+		    
 		            .antMatchers("/","/register").permitAll()
-		            .antMatchers("/**").hasAnyRole("OWNER")
+		           // .antMatchers("/**").hasAnyRole("OWNER")
 		            .and()
 	            .formLogin()
 	                .loginPage("/login")
 	                .permitAll()
-	                .successHandler((request, response, authentication) -> response.sendRedirect("/home"))
+	                .successHandler((request, response, authentication) -> response.sendRedirect("/home/"))
 	                .failureHandler((request, response, authentication) -> response.sendRedirect("/login"))
 	                .and()
 	           .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

@@ -9,7 +9,7 @@
 			   <input  class="form-control" type="text" th:field="*{title}" placeholder="title" />
 			   <textarea class="form-control" rows="5" type="text" th:field="*{content}" placeholder="content"></textarea>
                 <div  th:if="${image != null}">
-                <img th:src="@{/image/{id}(id=${article.id})}" class="img-responsive"/> <!-- here is article id for now but needs to be changed to img id -->
+                <img th:src="@{/image/{id}(id=${article.id})}" class="img-responsive" alt=""/> <!-- here is article id for now but needs to be changed to img id -->
                 <input type="file" name="file"></input>
                 <p class="help-block">Replace Image</p>
 				<input class="btn btn-primary" type="submit" value="Save" />

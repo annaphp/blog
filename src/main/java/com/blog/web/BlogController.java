@@ -39,9 +39,7 @@ public class BlogController {
 	
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String allArticles(Model model){
-		List<Article> articles = articleService.findAll();
-		model.addAttribute("articles", articles);
+	public String allArticles(){
 		return "main";
 	}
 
@@ -84,7 +82,7 @@ public class BlogController {
 		return "login";
 	}
 	
-	@RequestMapping(value="/register")
+	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public String registerForm(Model model){
 		model.addAttribute("user", new User());
 		return "register";

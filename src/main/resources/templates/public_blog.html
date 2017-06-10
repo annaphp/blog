@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head>
+		<div th:include="layout/style"> style </div>
+	</head>
+	<body>
+	<section class="container" >	
+	<div>
+	<h3 th:text="${'Welcome to' + ${user.username} + 'blog'"></h3>
+	</div>
+	<div th:each="a : ${articles}">
+		<div class="row-fluid" >
+ 		 <div class="col-lg-4 col-md-4 col-sm-6 public_blog_class">
+   			 <div class="thumbnail">
+     			 <img th:src="@{/image/{id}(id=${a.id})}" alt=""/>
+     			 <div class="caption">
+      			<a th:href="@{/read/article/{id}(id=${a.id})}"><h3  th:text="${a.title}"></h3></a>
+      		    </div>
+         	</div>
+     	 </div>
+	</div>
+	
+	</div>
+	
+	</section>
+	</body>
+</html>

@@ -4,20 +4,19 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<head>
 		<div th:include="layout/style"> style </div>
-		<title>Layout page</title>
 	</head>
 <body>
 	<span th:utext="${session.userEmail}"></span>
 	<span th:utext="${session.adminEmail}"></span>
 	
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default" sec:authorize="isAuthenticated()">
 		    <ul class="nav nav-pills">
-		           
-			    	<li sec:authorize="isAuthenticated()" role="presentation"><a th:href="@{/article_form}">Add Post</a> </li>
-			    	<li sec:authorize="isAuthenticated()" role="presentation"><a th:href="@{/logout}">Sign out</a></li>
-				
-		    	<li sec:authorize="!isAuthenticated()" role="presentation" class="active"><a th:href="@{/login}">Sign in</a></li>
-		    	<li sec:authorize="!isAuthenticated()" role="presentation"><a th:href="@{/register}">Create Blog</a></li>
+		     		
+		           <li role="presentation"><a th:href="@{/home}">Home</a></li>
+			    	<li  role="presentation"><a th:href="@{/article_form}">Add Post</a> </li>
+			    	<li role="presentation"><a th:href="@{'/read/'+${#authentication.principal.username}}">View Your Public Blog</a></li>
+			    	
+			    	<li role="presentation"><a th:href="@{/logout}">Sign out</a></li>
 		    </ul>
 	</nav>
 	

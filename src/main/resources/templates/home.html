@@ -1,26 +1,31 @@
 <html layout:decorator="layout/base">
-	<section layout:fragment="content">		
-		<div class="panel panel-default" th:if="${! #sets.isEmpty(articles)}">
-			<div th:each="a : ${articles}" class="panel-body">
-			    
-				<h2 th:text="${a.title}"> title </h2>
-			    <div th:text="${a.content}"> content</div>
-			    <div style="width:80%">  
-			    <img th:src="@{/image/{id}(id=${a.id})}" class="img-responsive" /> <!-- here is article id for now but needs to be changed to img id -->
-			     <div class="panel-footer">
-				     <a th:href="@{/edit/{id}(id=${a.id})}" class="glyphicon glyphicon-pencil" aria-hidden="true" ></a>			   
-				     <a th:href="@{/delete/{id}(id=${a.id})}"  class="glyphicon glyphicon-trash" aria-hidden="true"></a>
-			     </div>
-			    </div>
-			    
-			</div>
-		</div> 			
+	<section layout:fragment="content">	
+		
+		<div  th:if="${! #sets.isEmpty(articles)}">
+		<h3> Your Posts:</h3>
+		<table class="table table-hover table-bordered" >
+			<tbody>
+				<tr>
+					<th>#</th>
+					<th> Title</th>
+					<th> View</th>
+					<th> Edit</th>
+					<th> Delete</th>
+				</tr>
+				
+				<tr th:each="a,iterator : ${articles}">
+					<td th:text="${iterator.count}"></td>
+					<td  th:text="${a.title}"></td>
+					 
+					<td><a th:href="@{/read/article/{id}(id=${a.id})}" class="glyphicon glyphicon-eye-open"  ></a></td>
+					<td><a th:href="@{/edit/{id}(id=${a.id})}" class="glyphicon glyphicon-pencil"  ></a></td>
+					<td><a th:href="@{/delete/{id}(id=${a.id})}"  class="glyphicon glyphicon-trash"></a></td>
+					
+				</tr>
+			</tbody>	
+		</table>
+		</div>
 	</section>
-	
-	
-	
-	
-	
 </html>
 
 <!-- <td><a class="btn red" th:href="@{/admin/delete_user/{id}(id=${u.id})}">delete</a></td>

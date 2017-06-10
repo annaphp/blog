@@ -7,14 +7,15 @@
 			      <li th:text="${error}"></li>
 			    </ul>
 			</div>
+			<h3> Creating new blog:</h3>
 			<fieldset>
-			<label for="username"  class="control-label" >Username</label>
+			<label for="username"  class="control-label" >Username:</label>
 			<input type="text" name="username" class="form-control" th:field="*{username}" ></input>
 			
-			<label for="email"  class="control-label">Email</label>
+			<label for="email"  class="control-label">Email:</label>
 			<input type="email" name="email" class="form-control" th:field="*{email}"></input>
 			
-			<label for="password"  class="control-label" th:field="*{password}">Password</label>
+			<label for="password"  class="control-label" th:field="*{password}">Password:</label>
 			<input type="password" name="password" class="form-control"></input>
 		    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			

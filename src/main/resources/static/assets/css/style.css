@@ -11,8 +11,18 @@ body{
 
 #jumbo {
    color:white;
-  /*  font-family: 'Nunito', sans-serif;
-   font-family: 'Pacifico', cursive;
-   font-family: 'VT323', monospace; */
    font-family: 'Cabin', sans-serif;
+}
+
+/* home.html style */
+.card{
+	width: 100rem;
+}
+
+.public_blog_class{
+	min-height: 400px;
+}
+
+.thumbnail_pic{
+	max-height: 500px;
 }

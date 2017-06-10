@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head>
+		<div th:include="layout/style"> style </div>
+	</head>
+	<body>
+	<section class="container" >
+	<header>
+	</header>	
+		
+		<div  th:if="${! #sets.isEmpty(article)}" >
+	    	<div class="card" >
+				  		 <img th:src="@{/image/{id}(id=${article.id})}" alt="" class="img-responsive" /> 
+				  		 <div class="card-block">
+							 <h2 th:text="${article.title}" class="card-title"> title </h2>
+					    	 <p th:text="${article.content}" class="card-text"> content</p>
+				    	</div>	 
+				    	</div>
+			  </div>
+			
+	</section>
+	</body>
+</html>
