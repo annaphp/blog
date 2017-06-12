@@ -30,7 +30,9 @@ public class ReaderConroller {
 	@RequestMapping(value="/article/{id}", method=RequestMethod.GET)
 	public String showArticle(@PathVariable("id") Long id, Model model){
 		Article article = articleService.findById(id);
+		User user = article.getUser();
 		model.addAttribute("article", article);
+		model.addAttribute("user", user);
 		return "post";
 	}
 		

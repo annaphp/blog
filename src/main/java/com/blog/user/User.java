@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -20,14 +21,15 @@ public class User implements UserDetails {
 	private Long id;
 	
 	@NotNull
-	//@Size(min=5, max=16, message="{username.size}") need config to enable custom messages
-	@Size(min=4, max=16, message="Username must be between 4 and 16 characters long")
+	@Size(min=4, max=16, message="Username must be between 4 and 16 characters long.")
 	private String username;
 	
 	@NotNull
+	@Size(min=7, max=255, message="Password must be between 7 and 255 charactes long.")
 	private String password;
 	
-	//@NotNull
+	@NotNull
+	@Pattern(regexp = "(\\d|\\w|\\.)+\\@(\\d|\\w|\\.)+\\.(\\d|\\w)+", message = "example: janesmith@gmail.com")
 	private String email;
 	
 	private Role role;

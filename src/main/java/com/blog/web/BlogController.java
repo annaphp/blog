@@ -2,6 +2,7 @@ package com.blog.web;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.blog.article.Article;
 import com.blog.article.ArticleService;
@@ -77,29 +79,7 @@ public class BlogController {
 		
 	}
 	
-	@RequestMapping(value="/login")
-	public String login(){
-		return "login";
-	}
 	
-	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public String registerForm(Model model){
-		model.addAttribute("user", new User());
-		return "register";
-	}
-	
-	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public String register(@Valid User user, Errors errors){
-		if(errors.hasErrors()){
-			return "register";
-		}
-		if(userService.byUserName(user.getUsername()) != null){
-			//return error message into view
-			return "register";
-		}
-	    userService.create(user, Role.ROLE_OWNER);		
-		return "redirect:/login";
-	}
 	
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
 	public String editForm(@PathVariable("id") Long id, Model model){

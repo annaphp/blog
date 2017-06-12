@@ -17,9 +17,9 @@ public class AdminSetup {
 	@Autowired
 	UserService userService;
 	
-	@Scheduled(fixedRate = Long.MAX_VALUE)
-	public void setUpAdmin(){
-		User u = userService.create(new User("ss@ss.ss", "asdfasdf"), Role.ROLE_OWNER);
-		System.out.println("***************admin account set up" + u);
-	}
+//	@Scheduled(fixedRate = Long.MAX_VALUE)
+//	public void setUpAdmin(){
+//		User u = userService.create(new User("ss@ss.ss", "asdfasdf"), Role.ROLE_OWNER);
+//		System.out.println("***************admin account set up" + u);
+//	}
 }

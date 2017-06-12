@@ -6,9 +6,11 @@
 		<div th:include="layout/style"> style </div>
 	</head>
 	<body>
-	<section class="container" >
-	<header>
-	</header>	
+	<nav class="navbar navbar-light bg-faded">
+	    <a class="navbar-brand" th:href="@{'/read/'+${user.username}}" th:text="'You are reading '+${user.username}+'\'s blog'"> 
+	    </a>  
+	</nav>
+	<section class="container" >	
 		
 		<div  th:if="${! #sets.isEmpty(article)}" >
 	    	<div class="card" >
