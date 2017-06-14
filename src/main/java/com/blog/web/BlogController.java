@@ -41,64 +41,7 @@ public class BlogController {
 	
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String allArticles(){
+	public String showMainPage(){
 		return "main";
 	}
-
-	@RequestMapping(value="/home", method=RequestMethod.GET)
-	public String home(Model model, Principal principal){
-		User currentUser = userService.byUserName(principal.getName());
-		model.addAttribute("articles", articleService.findByUserId(currentUser.getId()));
-		return "home";
-	}
-	
-	@RequestMapping(value="article_form")
-	public String articleForm(Model model){
-		model.addAttribute("article", new Article());
-		return "form";
-	}
-	
-	@RequestMapping(value="save", method=RequestMethod.POST)
-	public String save(@ModelAttribute Article article,@RequestParam("file") MultipartFile file,
-			           Principal principal)throws IOException{
-		article.setUser(userService.byUserName(principal.getName()));
-		Article a = articleService.create(article);
-		Image image = imageService.findByArticleId(a.getId());
-		if(image != null){
-			imageService.delete(image);
-			imageService.create(file, a.getId());
-		}else{
-			imageService.create(file, a.getId());
-		}
-		return "redirect:/home";
-	}
-	
-	@RequestMapping(value="/")
-	public String main(){
-		return "main";
-		
-	}
-	
-	
-	
-	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
-	public String editForm(@PathVariable("id") Long id, Model model){
-		Article article = articleService.findById(id);
-		Image image = imageService.findByArticleId(id);
-		model.addAttribute("image", image);
-		model.addAttribute("article", article);
-		return "form";
-	}
-	
-	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
-	public String deletePost(@PathVariable("id") Long id){
-	    Image image = imageService.findByArticleId(id);
-	   try{
-	    	imageService.delete(image);
-	   }catch(IOException exception){}
-	   
-		articleService.delete(id);
-		return "redirect:/home";
-	}
-	
 }

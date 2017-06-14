@@ -1,6 +1,6 @@
 <html layout:decorator="layout/base">
 	<section layout:fragment="content">		
-		<form  class="form-horizontal" th:action="@{/login}"  method="post">
+		<form  class="form-horizontal" th:action="@{/user/login}"  method="post">
 			<fieldset>
 			<div th:if="${param.error}" class="text-danger">
 				Invalid username or password. Try again.

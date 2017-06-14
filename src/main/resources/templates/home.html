@@ -18,8 +18,8 @@
 					<td  th:text="${a.title}"></td>
 					 
 					<td><a th:href="@{/read/article/{id}(id=${a.id})}" class="glyphicon glyphicon-eye-open"  ></a></td>
-					<td><a th:href="@{/edit/{id}(id=${a.id})}" class="glyphicon glyphicon-pencil"  ></a></td>
-					<td><a th:href="@{/delete/{id}(id=${a.id})}"  class="glyphicon glyphicon-trash"></a></td>
+					<td><a th:href="@{/user/edit/{id}(id=${a.id})}" class="glyphicon glyphicon-pencil"  ></a></td>
+					<td><a th:href="@{/user/delete/{id}(id=${a.id})}"  class="glyphicon glyphicon-trash"></a></td>
 					
 				</tr>
 			</tbody>	

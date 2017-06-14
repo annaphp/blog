@@ -3,7 +3,7 @@
 		<h4>Add new post:</h4>
 		
 		
-			<form  class="form-horizontal"   enctype="multipart/form-data"  action="#" th:action="@{/save}" th:object="${article}" method="post">
+			<form  class="form-horizontal"   enctype="multipart/form-data"  th:action="@{/user/save}" th:object="${article}" method="post">
 			
 			   <input  class="form-control" type="hidden" th:field="*{id}" /> 
 			   <input  class="form-control" type="text" th:field="*{title}" placeholder="title" />

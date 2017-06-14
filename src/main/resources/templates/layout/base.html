@@ -12,8 +12,8 @@
 	<nav class="navbar navbar-default" sec:authorize="isAuthenticated()">
 		    <ul class="nav nav-pills">
 		     		
-		           <li role="presentation"><a th:href="@{/home}">Home</a></li>
-			    	<li  role="presentation"><a th:href="@{/article_form}">Add Post</a> </li>
+		           <li role="presentation"><a th:href="@{/user/home}">Home</a></li>
+			    	<li  role="presentation"><a th:href="@{/user/article_form}">Add Post</a> </li>
 			    	<li role="presentation"><a th:href="@{'/read/'+${#authentication.principal.username}}">View Your Public Blog</a></li>
 			    	
 			    	<li role="presentation"><a th:href="@{/logout}">Sign out</a></li>
