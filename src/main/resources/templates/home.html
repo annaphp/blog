@@ -1,5 +1,8 @@
 <html layout:decorator="layout/base">
 	<section layout:fragment="content">	
+		<div th:if="${messages}">
+			<div class="alert alert-success" role="alert" th:text="${messages}" ></div>
+		</div>
 		
 		<div  th:if="${! #sets.isEmpty(articles)}">
 		<h3> Your Posts:</h3>

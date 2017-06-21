@@ -40,7 +40,7 @@ public class UserController {
 	ImageService imageService;
 	
     @RequestMapping(value="/login")
-		public String login(){
+		public String login(Model model){
 		return "login";
 	}
 		
@@ -63,7 +63,9 @@ public class UserController {
 			return "register";
 		}
 		 userService.create(user, Role.ROLE_OWNER);	//this method checks if user already exists	
-		 model.addFlashAttribute("messages",Arrays.asList("You have been successfully registered!"));
+		 model.addFlashAttribute("messages","You have been successfully registered! Please login.");
+		// model.addFlashAttribute("messages",Arrays.asList("You have been successfully registered! Please log in."));
+
 		 return "redirect:/user/login";
 	}
 	
@@ -82,7 +84,7 @@ public class UserController {
 	
 	@RequestMapping(value="save", method=RequestMethod.POST)
 	public String saveArticle(@ModelAttribute Article article,@RequestParam("file") MultipartFile file,
-			           Principal principal)throws IOException{
+			           Principal principal, RedirectAttributes model)throws IOException{
 		article.setUser(userService.byUserName(principal.getName()));
 		Article a = articleService.create(article);
 		Image image = imageService.findByArticleId(a.getId());
@@ -92,6 +94,7 @@ public class UserController {
 		}else{
 			imageService.create(file, a.getId());
 		}
+		model.addFlashAttribute("messages", "Your post has been successfuly saved!");
 		return "redirect:/user/home";
 	}
 	
@@ -105,13 +108,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
-	public String deletePost(@PathVariable("id") Long id){
+	public String deletePost(@PathVariable("id") Long id, RedirectAttributes model ){
 	    Image image = imageService.findByArticleId(id);
 	   try{
 	    	imageService.delete(image);
 	   }catch(IOException exception){}
 	   
 		articleService.delete(id);
+		model.addFlashAttribute("messages", "Your post has been successfully deleted!");
 		return "redirect:/user/home";
 	}
 

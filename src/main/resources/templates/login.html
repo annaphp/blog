@@ -1,10 +1,11 @@
 <html layout:decorator="layout/base">
 	<section layout:fragment="content">		
 		<form  class="form-horizontal" th:action="@{/user/login}"  method="post">
+		<div th:if="${messages}">
+			<div class="alert alert-success" role="alert" th:text="${messages}" >...</div>
+		</div>
 			<fieldset>
-			<div th:if="${param.error}" class="text-danger">
-				Invalid username or password. Try again.
-			</div>
+			
 			<h3> Log In:</h3>
 			<label for="username"  class="control-label">Username</label>
 			<input type="text" name="username" class="form-control"></input>
