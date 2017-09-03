@@ -64,9 +64,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	 public SpringSecurityDialect securityDialect() {
 	   return new SpringSecurityDialect();
 	 }
-
-	
-	
-
-
 }

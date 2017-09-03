@@ -3,6 +3,10 @@
 		<div th:if="${messages}">
 			<div class="alert alert-success" role="alert" th:text="${messages}" ></div>
 		</div>
+		<div th:if="${#sets.isEmpty(articles)}">
+		<p> Click Add Post to add a new post.</p>
+		</div>
+		
 		
 		<div  th:if="${! #sets.isEmpty(articles)}">
 		<h3> Your Posts:</h3>
